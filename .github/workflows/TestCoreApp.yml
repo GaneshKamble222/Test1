@@ -12,7 +12,7 @@ jobs:
     environment: DEV
 
     env:
-      AZURE_WEBAPP_NAME: TestApp
+      AZURE_WEBAPP_NAME: TestCoreApp
       AZURE_WEBAPP_PACKAGE_PATH: "./publish"
 
     steps:
