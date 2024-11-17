@@ -2,7 +2,7 @@ name: Simple manual workflow - Three Env
 
 on:
   workflow_dispatch: # Trigger the workflow manually
-    pull:
+    push:
     branches:
       - main
 
