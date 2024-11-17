@@ -2,9 +2,9 @@ name: Simple manual workflow - Three Env
 
 on:
   workflow_dispatch:
-	push:
+     push:
 	branches:
-      - main
+           - main
 
 jobs:
 	env:
