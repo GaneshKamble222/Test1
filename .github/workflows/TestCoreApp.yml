@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  DEV:
+  publish:
     runs-on: ubuntu-latest
     environment: DEV
 
