@@ -1,45 +1,40 @@
-name: Simple manual workflow - Three Env
+
+name: Publish 🚀
 
 on:
-  workflow_dispatch: # Trigger the workflow manually
-    push:
+  workflow_dispatch:
+  push:
     branches:
       - main
 
-    env:
-      AZURE_WEBAPP_NAME: TestCoreApp
-      AZURE_WEBAPP_PACKAGE_PATH: "./publish"
-      
+env:
+  AZURE_WEBAPP_NAME: TestCoreApp
+  AZURE_WEBAPP_PACKAGE_PATH: "./publish"
+
 jobs:
   publish:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code
       - uses: actions/checkout@v3
-
-      # Step 2: Setup .NET
+      
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.0.x'
-
-      # Step 3: Restore dependencies
+      
       - name: Restore
         run: dotnet restore ./WebApp/WebApp.sln
-
-      # Step 4: Build project
+      
       - name: Build
         run: dotnet build ./WebApp/WebApp.sln --configuration Release --no-restore
-
-      # Step 5: Publish project
+      
       - name: Publish
-        run: dotnet publish ./WebApp/WebApp.sln --configuration Release --no-build --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        run: dotnet publish ./WebApp/WebApp.sln --configuration Release --no-build --output ${{ env.WebCoreApp }}
 
-      # Step 6: Deploy to Azure Web App
       - name: Deployment
         uses: azure/webapps-deploy@v2
-        with:
+        with: 
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.WEBCOREAPP }}
+          publish-profile: ${{ secrets.WebCoreApp }}
           package: "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
