@@ -6,14 +6,13 @@ on:
     branches:
       - main
 
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    environment: DEV
-
     env:
       AZURE_WEBAPP_NAME: TestCoreApp
       AZURE_WEBAPP_PACKAGE_PATH: "./publish"
+      
+jobs:
+  publish:
+    runs-on: ubuntu-latest
 
     steps:
       # Step 1: Checkout the code
