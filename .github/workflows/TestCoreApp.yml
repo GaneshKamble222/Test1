@@ -1,19 +1,18 @@
-name: Publish 🚀
+name: Simple manual workflow - Three Env
 
 on:
   workflow_dispatch:
-  push:
-    branches:
+	push:
+	branches:
       - main
 
-env:
-  AZURE_WEBAPP_NAME: TestCoreApp
-  AZURE_WEBAPP_PACKAGE_PATH: "./publish"
-
 jobs:
-  publish:
+	env:
+	  AZURE_WEBAPP_NAME: TestCoreApp
+	  AZURE_WEBAPP_PACKAGE_PATH: "./publish"
+  DEV:
     runs-on: ubuntu-latest
-
+    environment: DEV
     steps:
       - uses: actions/checkout@v3
       
